@@ -30,4 +30,11 @@ public class FirstServiceController {
 
     }
 
+    //CustomFilter 확인해보기
+    @GetMapping("/check")
+    public String check(){
+        return " Hi . This is a message from First Service";
+    }
+
+
 }

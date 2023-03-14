@@ -25,4 +25,10 @@ public class SecondServiceController {
 
     }
 
+    //CustomFilter 확인해보기
+    @GetMapping("/check")
+    public String check(){
+        return " Hi . This is a message from Second Service";
+    }
+
 }

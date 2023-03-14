@@ -6,9 +6,9 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class FilterConfig {
-    @Bean
+    //@Bean
     public RouteLocator gatewayRoutes (RouteLocatorBuilder builder){
         return builder.routes()
                 /// [first-service/**] 라우터 등록 -> 라우터가 완성이 되면 ->  uri("http://localhost:8081") 로 이동

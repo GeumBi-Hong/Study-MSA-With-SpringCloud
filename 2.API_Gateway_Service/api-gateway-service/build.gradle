@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.9'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id("com.google.osdetector") version "1.7.0"
 }
 
 group = 'com.example'
@@ -28,6 +29,11 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    if (osdetector.arch.equals("aarch_64")) {
+        implementation("io.netty:netty-all")
+    }
+
 }
 
 dependencyManagement {
