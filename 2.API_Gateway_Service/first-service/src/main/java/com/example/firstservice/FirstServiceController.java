@@ -1,10 +1,14 @@
 package com.example.firstservice;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 //http://localhost:8081/welcome  -> 우리가 만들어 놓은것은 이건데
@@ -14,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/first-service")
 public class FirstServiceController {
+
+    Environment environment;
+
+    @Autowired
+    public  FirstServiceController(Environment environment){
+        this.environment = environment;
+    }
 
     @GetMapping("/welcome")
     public String welcome(){
@@ -32,8 +43,12 @@ public class FirstServiceController {
 
     //CustomFilter 확인해보기
     @GetMapping("/check")
-    public String check(){
-        return " Hi . This is a message from First Service";
+    public String check(HttpServletRequest request){
+
+        //1. HttpServletRequest를 통해서 한다.
+        log.info ("Server port = {}",request.getServerPort());
+        //2. environment.getProperty("local.server.port") 이렇게도한다.
+        return String.format("Hi , there. This is a message from First Service on Port %s" , environment.getProperty("local.server.port"));
     }
 
 
